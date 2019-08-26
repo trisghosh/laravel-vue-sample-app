@@ -1,0 +1,67 @@
+.table-header
+{
+    display: inline-flex;
+    border-right: 1px solid rgba(0,0,0,.125);
+}
+.table-header:last-child
+{
+    display: inline-flex;
+    border-right: 0px;
+}
+.team-logo
+{
+    margin-right: 10px;
+}
+.table-tr
+{
+    padding-bottom: .50rem;
+    border-bottom: 1px solid rgba(0,0,0,.125); 
+}
+.table-tr:not(:first-child)
+{
+    padding-top: .50rem;
+}
+.table-tr:last-child
+{
+    border-bottom: 0px; 
+}
+.table-td
+{
+    display: inline-flex;
+}
+.table-card-header {
+    padding: 0rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+.table-card-body {
+    flex: 1 1 auto;
+    padding: .50rem 0;
+}
+.crickinfo-paginate
+{
+    margin-top :10px;
+    display: flex;
+    justify-content: center;
+}
+.player-logo
+{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.modal-container {
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.partition{
+    /* display: inline-flex; */
+}
+.table-actions a
+{
+    margin-right:10px;
+}
