@@ -119,6 +119,31 @@ class TeamController extends Controller
         
         
     }//end of function
+    /**
+        * @SWG\Get(
+        * path="/pointDetails",
+        * description="Get point details for a specific team",
+        * produces={"application/json"},
+        * tags={""},
+        * security={
+        * {
+        * "Bearer": {}
+        * },
+        * },
+        * @SWG\Response(
+        * response=200,
+        * description="OK",
+        * ),
+        * @SWG\Response(
+        * response=400,
+        * description="Bad Request",
+        * ),
+        * @SWG\Response(
+        * response=404,
+        * description="Not Found"
+        * )
+        * )
+    */
     public function pointDetails(Request $request)
     {
             $matches= Match::where('team_id',$request->team_id)->orwhere('against_team_id',$request->team_id)->with('team','against_team','winner_team')->get();
