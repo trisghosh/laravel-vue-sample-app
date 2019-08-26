@@ -111,10 +111,16 @@ class TeamController extends Controller
         }
         return response(['status' => false,'code' =>403,],403);
     }//
+    public function points()
+    {
+        $matches= Point::with('team')->paginate(5);
+        // return ($matches);
+        return view('points/table')->withMatches($matches);
+        
+        
+    }//end of function
     public function pointDetails(Request $request)
     {
-        if($request->ajax())
-        {
             $matches= Match::where('team_id',$request->team_id)->orwhere('against_team_id',$request->team_id)->with('team','against_team','winner_team')->get();
             $mdetails=array();
             $i=0;
@@ -134,14 +140,15 @@ class TeamController extends Controller
                
                 $i++;
                 
+            }           
+            if($request->ajax())
+            {    
+               return ($mdetails);
             }
-            return ($mdetails);
-
-
-            // return view('team/matchlists')->withMatches($mdetails)->withTeam($request->team_id);
-            
-        }
-        return response(['status' => false,'code' =>403,],403);
+            else{
+                $team_name=Team::select('name')->where('id', $request->team_id)->get();
+                return view('team/matchlists')->withMatches($mdetails)->withTeam($request->team_id)->withTeamnm($team_name[0]->name);
+            }
     }
     
 }

@@ -47,7 +47,7 @@
                                     <a class="dropdown-item" href="/players">
                                         {{ __('Players') }}
                                     </a>  
-                                    <a class="dropdown-item" href="/players">
+                                    <a class="dropdown-item" href="/points">
                                         {{ __('Points Table') }}
                                     </a>                        
                                 </div>

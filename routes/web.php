@@ -17,8 +17,8 @@
 Route::get('/','TeamController@index');
 Route::get('/players','PlayersController@index');
 Route::get('/players/{team_id}','PlayersController@teamLists')->name('players');
-Route::get('/points/{team_id}','PlayersController@index'); //will be changed later
-
+Route::get('/points/{team_id}','TeamController@pointDetails'); //will be changed later
+Route::get('/points','TeamController@points');
 Auth::routes();
 
 
