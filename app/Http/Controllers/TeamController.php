@@ -113,33 +113,35 @@ class TeamController extends Controller
     }//
     public function pointDetails(Request $request)
     {
-        // if($request->ajax())
-        // {
-            // $team =Team::with('match')->find($request->team_id);
+        if($request->ajax())
+        {
             $matches= Match::where('team_id',$request->team_id)->orwhere('against_team_id',$request->team_id)->with('team','against_team','winner_team')->get();
             $mdetails=array();
             $i=0;
             foreach($matches as $match)
             {
                 $against_team=($match->team_id==$request->team_id?$match->against_team_id:$match->team_id);
+                
                 $mdetails[$against_team]['played_match']=(isset($mdetails[$against_team]['played_match'])?$mdetails[$against_team]['played_match']+1:1);
                 $mdetails[$against_team]['team_name']=($match->team_id==$request->team_id?$match->against_team->name:$match->team->name);
+                $mdetails[$against_team]['win']=(isset($mdetails[$against_team]['win'])?$mdetails[$against_team]['win']:0)+($match->winner_team->id==$request->team_id?1:0);
+                $mdetails[$against_team]['draw']=(isset($mdetails[$against_team]['draw'])?$mdetails[$against_team]['draw']:0)+($match->winner_team->id==''?1:0);;
+                $mdetails[$against_team]['lost']=(isset($mdetails[$against_team]['lost'])?$mdetails[$against_team]['lost']:0)+($match->winner_team->id!=$request->team_id?1:0);
                 $mdetails[$against_team]['matches'][$i]['id']=$match->id;
+                $mdetails[$against_team]['logo']=$match->against_team->logouri;
                 $mdetails[$against_team]['matches'][$i]['winner_team_id']=$match->winner_team->id;
                 $mdetails[$against_team]['matches'][$i]['winner_team_name']=$match->winner_team->name;
                
                 $i++;
                 
             }
+            return ($mdetails);
 
-            print_r($mdetails);
 
-
-            // return view('team/matchlists')->withMatches($matches)->withTeam($request->team_id);
-            // return $matches;
+            // return view('team/matchlists')->withMatches($mdetails)->withTeam($request->team_id);
             
-        // }
-        // return response(['status' => false,'code' =>403,],403);
+        }
+        return response(['status' => false,'code' =>403,],403);
     }
     
 }

@@ -3,11 +3,21 @@
         <div class="modal-header">
             <slot name="header">
             Points Table
+            
             </slot>
         </div>
         <div class="modal-body">
-            <slot name="body">
-               Body
+            <slot name="body" v-if="info">               
+                <div v-for="inf in info">
+                    <div class="match-details">
+                        <img :src="teamlogo + inf.logo" class="team-logo">
+                        <div v-if="inf.team_name">Team Name : {{inf.team_name}}</div>
+                        <div v-if="inf.played_match">Played : {{inf.played_match}}</div>
+                        <div v-if="inf.win">Win : {{inf.win}}</div>
+                        <div v-if="inf.draw">Draw : {{inf.draw}}</div>
+                        <div v-if="inf.lost">Lost : {{inf.lost}}</div>
+                    </div>
+                </div>
             </slot>
         </div>
 

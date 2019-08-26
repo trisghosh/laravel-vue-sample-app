@@ -1788,6 +1788,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -37346,14 +37356,58 @@ var render = function() {
         _c(
           "div",
           { staticClass: "modal-header" },
-          [_vm._t("header", [_vm._v("\n        Points Table\n        ")])],
+          [
+            _vm._t("header", [
+              _vm._v("\n        Points Table\n        \n        ")
+            ])
+          ],
           2
         ),
         _vm._v(" "),
         _c(
           "div",
           { staticClass: "modal-body" },
-          [_vm._t("body", [_vm._v("\n           Body\n        ")])],
+          [
+            _vm.info
+              ? _vm._t(
+                  "body",
+                  _vm._l(_vm.info, function(inf) {
+                    return _c("div", [
+                      _c("div", { staticClass: "match-details" }, [
+                        _c("img", {
+                          staticClass: "team-logo",
+                          attrs: { src: _vm.teamlogo + inf.logo }
+                        }),
+                        _vm._v(" "),
+                        inf.team_name
+                          ? _c("div", [
+                              _vm._v("Team Name : " + _vm._s(inf.team_name))
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        inf.played_match
+                          ? _c("div", [
+                              _vm._v("Played : " + _vm._s(inf.played_match))
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        inf.win
+                          ? _c("div", [_vm._v("Win : " + _vm._s(inf.win))])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        inf.draw
+                          ? _c("div", [_vm._v("Draw : " + _vm._s(inf.draw))])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        inf.lost
+                          ? _c("div", [_vm._v("Lost : " + _vm._s(inf.lost))])
+                          : _vm._e()
+                      ])
+                    ])
+                  })
+                )
+              : _vm._e()
+          ],
           2
         )
       ])
