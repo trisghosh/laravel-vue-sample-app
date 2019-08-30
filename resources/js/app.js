@@ -44,7 +44,8 @@ const app = new Vue({
             name:'tristup'
         },
         showTeamId: null,
-        showPlayerId:null
+        showPlayerId:null,
+        seen: false
     },
     mounted(){
         console.log({ a: this})
@@ -64,6 +65,16 @@ const app = new Vue({
         {
             this.$modal.show('points')
             this.showTeamId = e.team_id
+        },
+        onChange(e)
+        {
+            console.log(e.target.value);
+        },
+        showHide(e)
+        {
+            console.log(e.target.value);
+            e.target.value==2?this.seen=true:this.seen=false;
+           
         },
         beforeOpen(e) {
             

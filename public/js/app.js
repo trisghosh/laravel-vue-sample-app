@@ -49674,7 +49674,8 @@ var app = new Vue({
       name: 'tristup'
     },
     showTeamId: null,
-    showPlayerId: null
+    showPlayerId: null,
+    seen: false
   },
   mounted: function mounted() {
     console.log({
@@ -49699,6 +49700,14 @@ var app = new Vue({
     showPointsTable: function showPointsTable(e) {
       this.$modal.show('points');
       this.showTeamId = e.team_id;
+    },
+    onChange: function onChange(e) {
+      console.log(e.target.value);
+      console.log(this.parent());
+    },
+    showHide: function showHide(e) {
+      console.log(e.target.value);
+      e.target.value == 2 ? this.seen = true : this.seen = false;
     },
     beforeOpen: function beforeOpen(e) {}
   }

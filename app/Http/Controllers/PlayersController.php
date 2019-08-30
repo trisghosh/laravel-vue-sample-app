@@ -45,8 +45,8 @@ class PlayersController extends Controller
     {
         //
         $attribute=request()->validate([
-            'first_name'=>['required','min:5','max:255'],
-            'last_name'=>['required','min:5','max:255'],
+            'first_name'=>['required','min:3','max:255'],
+            'last_name'=>['required','min:3','max:255'],
             'imageuri'=>['required','mimes:jpeg,bmp,png'],
             'country'=>['required','min:5','max:255'],
             'team_id'=>'required|not_in:0',

@@ -25,7 +25,7 @@ class CreateMatchesTable extends Migration
             $table->foreign('against_team_id')->references('id')->on('teams')
                 ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->unsignedBigInteger('winner_team_id');
+            $table->unsignedBigInteger('winner_team_id')->unsigned()->nullable();
             $table->foreign('winner_team_id')->references('id')->on('teams')
                 ->onUpdate('cascade')->onDelete('cascade');
     

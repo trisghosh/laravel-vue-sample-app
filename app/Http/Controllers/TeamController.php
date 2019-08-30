@@ -8,6 +8,7 @@ use App\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 class TeamController extends Controller
 {
     /**
@@ -174,6 +175,96 @@ class TeamController extends Controller
                 $team_name=Team::select('name')->where('id', $request->team_id)->get();
                 return view('team/matchlists')->withMatches($mdetails)->withTeam($request->team_id)->withTeamnm($team_name[0]->name);
             }
-    }
+    }//end of function
+    public function result(Request $request)
+    {
+        if ($request->isMethod('post')) {
+
+        //   print_r($request->all());
+          
+          
+            $attribute=request()->validate([
+                'team_id'=>['required','not_in:0','different:against_team_id'],
+                'against_team_id'=>['required','not_in:0','different:team_id'],
+                'total_tun_scored'=>['numeric'],
+                'result'=>['required','not_in:0'],
+            ]);
+            $attribute['winner_team_id']=null;
+            if($request->result==2)
+            {   
+                if($request->winner_team_id!=$request->team_id && $request->winner_team_id!=$request->against_team_id)
+                {
+                    return back()->with('winner','team is not in the match list');
+                }
+                else{
+                    $attribute['winner_team_id']=$request->winner_team_id;
+                }
+            }    
+            
+            $attribute['total_tun_scored']=$request->total_tun_scored;
+            $attribute['comments']=$request->comments;
+            $attribute['description']=$request->description;
+            /*** POINTS ARR STARTS */
+
+            $point_attr[0]['team_id']=$request->team_id;
+            $point_attr[1]['team_id']=$request->against_team_id;
+
+            $point_attr[0]['win']=0;
+            $point_attr[1]['win']=0;
+            $point_attr[0]['loose']=0;
+            $point_attr[1]['loose']=0;
+            
+            $point_attr[0]['draw']=0;
+            $point_attr[1]['draw']=0;
+
+            $point_attr[0]['point']=0;
+            $point_attr[1]['point']=0;
+            
+            if($request->result==1)
+            {
+                $point_attr[0]['draw']=1;
+                $point_attr[0]['point']=1;
+                
+                $point_attr[1]['draw']=1;
+                $point_attr[1]['point']=1;
+            }
+            else
+            {
+                if($request->team_id==$request->winner_team_id)
+                {
+                    $point_attr[0]['win']=1;
+                    $point_attr[0]['point']=3;
+
+                    $point_attr[1]['loose']=1;
+                    
+                }
+                else{
+
+                    $point_attr[0]['loose']=1;
+
+                    $point_attr[1]['win']=1;
+                    $point_attr[1]['point']=3;
+                }
+            }
+            
+            /*** POINTS ARR ENDS */
+            Match::create($attribute);
+            foreach($point_attr as $p)
+            {
+                $point_team=Point::where('team_id',$p['team_id'])->latest()->first();
+                $point_team->played+=1;
+                $point_team->win+=$p['win'];
+                $point_team->loose+=$p['loose'];
+                $point_team->draw+=$p['draw'];
+                $point_team->point+=$p['point'];
+                $point_team->save();
+            }
+            return back()->with('success','points added');
+            exit();
+        }
+        
+        $teams=Team::teamDropDown();
+        return view('points/create')->withTeams($teams);
+    }//end of function
     
 }
