@@ -1,20 +1,3 @@
-## About Cricket Example Application
-
-## Setup
-
-## To Build 
-
-npm run development
-
-npm run development -- --watch
-
-## VUE 
-
-In order to run the AJAX added the following MIX variable in .env file :
-
-MIX_AJAX_URL="${APP_URL}"
-
-## Routes
 +--------+----------+------------------------+------------------+------------------------------------------------------------------------+--------------+
 | Domain | Method   | URI                    | Name             | Action                                                                 | Middleware   |
 +--------+----------+------------------------+------------------+------------------------------------------------------------------------+--------------+
@@ -44,12 +27,3 @@ MIX_AJAX_URL="${APP_URL}"
 |        | GET|HEAD | team/result            |                  | App\Http\Controllers\TeamController@result                             | web,auth     |
 |        | POST     | team/result            | result           | App\Http\Controllers\TeamController@result                             | web,auth     |
 +--------+----------+------------------------+------------------+------------------------------------------------------------------------+--------------+
-
-
-## API
-
-
-## Vue Modal
-
-
-## License
