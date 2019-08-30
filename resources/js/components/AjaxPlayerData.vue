@@ -12,7 +12,7 @@
 
                     <div> Jersey Number : {{info.jersey_no}}</div>
                     <div> Team : {{info.team.name}}</div>
-                    <div class="team-logo">
+                    <div class="">
                         <img :src="teamlogo + info.team.logouri" class="team-logo">
                     </div>
                 </div>

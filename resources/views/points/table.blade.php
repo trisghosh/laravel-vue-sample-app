@@ -5,7 +5,19 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Points Table ') }}</div>
+                <div class="card-header">
+                    <div class="col-md-6 card-header-div">
+                        {{ __('Points Table ') }}
+                    </div>
+                    @auth
+                        <div class="col-md-6 card-header-div action">
+                            <a class="dropdown-item" href="/team/result">
+                                <i class="fa fa-plus" aria-hidden="true"></i> {{ __('Add Point') }}
+                            </a> 
+                        </div>
+                    @endauth
+                </div>
+
                 <div class="table-card-header">
                         <div class="col-md-3 table-header">Team Name</div>
                         <div class="col-md-1 table-header">Played</div>

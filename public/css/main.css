@@ -11,6 +11,7 @@
 .team-logo
 {
     margin-right: 10px;
+    max-width: 50px;
 }
 .table-tr
 {
@@ -58,10 +59,22 @@
     margin-right: auto;
     margin-left: auto;
 }
-.partition{
+.partition
+{
     /* display: inline-flex; */
 }
 .table-actions a
 {
     margin-right:10px;
+}
+
+.card-header-div
+{
+    display: inline-flex;
+    width: 48%;
+}
+
+.card-header-div.action
+{
+    text-align: right;
 }

@@ -5,15 +5,28 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Player Lists') }}  @if ( $team ) 
-                        of {{$players[0]->team->name}}
-                    @endif</div>
+                
+                <div class="card-header">
+                    <div class="col-md-6 card-header-div">
+                        {{ __('Player Lists') }}  @if ( $team ) 
+                            of {{$players[0]->team->name}}
+                        @endif
+                    </div>
+                    @auth
+                        <div class="col-md-6 card-header-div action">
+                            <a class="dropdown-item" href="/player/create">
+                                <i class="fa fa-plus" aria-hidden="true"></i> {{ __('Add Player') }}
+                            </a> 
+                        </div>
+                    @endauth                    
+                </div>
                 <div class="table-card-header">
                         <div class="col-md-4 table-header">Name</div>
                         <div class="col-md-2 table-header">Team</div>
                         <div class="col-md-2 table-header">State</div>
                         <div class="col-md-1 table-header">&nbsp;</div>
                 </div>
+               
                 <div class="table-card-body">
                    <!-- lists goes here -->                   
                     @foreach($players as $player)
