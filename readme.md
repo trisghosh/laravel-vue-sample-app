@@ -15,6 +15,7 @@ In order to run the AJAX added the following MIX variable in .env file :
 MIX_AJAX_URL="${APP_URL}"
 
 ## Routes
+<pre>
 +--------+----------+------------------------+------------------+------------------------------------------------------------------------+--------------+
 | Domain | Method   | URI                    | Name             | Action                                                                 | Middleware   |
 +--------+----------+------------------------+------------------+------------------------------------------------------------------------+--------------+
@@ -44,7 +45,7 @@ MIX_AJAX_URL="${APP_URL}"
 |        | GET|HEAD | team/result            |                  | App\Http\Controllers\TeamController@result                             | web,auth     |
 |        | POST     | team/result            | result           | App\Http\Controllers\TeamController@result                             | web,auth     |
 +--------+----------+------------------------+------------------+------------------------------------------------------------------------+--------------+
-
+</pre>
 
 ## API
 
