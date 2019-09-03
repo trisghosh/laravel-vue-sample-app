@@ -2,6 +2,13 @@
 
 ## Setup
 
+1. Go To root folder 
+2. git clone https://github.com/trisghosh/laravel-vue-sample-app.git
+3. Copy .env.example file to .env and edit database credentials there
+4. Run composer install
+5. Run php artisan key:generate
+6. Run php artisan migrate
+
 ## To Build 
 
 npm run development
@@ -51,6 +58,8 @@ MIX_AJAX_URL="${APP_URL}"
 
 
 ## Vue Modal
+
+Used VUE modal js to show the data in modal. 
 
 
 ## License
